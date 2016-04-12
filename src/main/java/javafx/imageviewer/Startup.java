@@ -25,7 +25,6 @@ public class Startup extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("/javafx/imageviewer/view/image-viewer.fxml"),
 				ResourceBundle.getBundle("javafx/imageviewer/bundle/base"));
 
-		System.out.println("ImageViewer");
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/javafx/imageviewer/css/standard.css").toExternalForm());
 

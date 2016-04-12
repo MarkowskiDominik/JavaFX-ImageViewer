@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,7 +12,8 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.imageviewer.controller.ImageViewerController">
    <children>
-      <Label layoutX="334.0" layoutY="14.0" styleClass="formTitle" text="%label.formTitle" />
+      <Button mnemonicParsing="false" onAction="#setDirectory" text="%button.selectFolder" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="20.0" />
+      <Button mnemonicParsing="false" onAction="#startSlideshow" text="%button.slideshow" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="20.0" />
       <GridPane layoutX="-1.0" layoutY="69.0" prefHeight="585.0" prefWidth="750.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" />
@@ -23,13 +25,18 @@
           <RowConstraints maxHeight="480.0" minHeight="480.0" prefHeight="480.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ScrollPane prefHeight="104.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <TableView fx:id="imagesTable" onKeyReleased="#keyActionChangeImage" onMouseClicked="#displaySelectedImage" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
               <columns>
-                <TableColumn prefWidth="112.0" text="%column.id" />
-                <TableColumn prefWidth="125.99996948242188" text="%column.name" />
+                <TableColumn fx:id="imageIdColumn" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="%column.id" />
+                <TableColumn fx:id="imageNameColumn" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" text="%column.name" />
               </columns>
             </TableView>
+            <ScrollPane fx:id="imageScrollPane" prefHeight="104.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <content>
+                  <ImageView fx:id="imageViewer" fitHeight="460.0" fitWidth="620.0" pickOnBounds="true" preserveRatio="true" />
+               </content></ScrollPane>
+            <Button fx:id="previousImageButton" mnemonicParsing="false" onAction="#getPreviousImage" prefHeight="480.0" prefWidth="55.0" text="%button.previous" GridPane.rowIndex="1" />
+            <Button fx:id="nextImageButton" mnemonicParsing="false" onAction="#getNextImage" prefHeight="480.0" prefWidth="55.0" text="%button.next" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
